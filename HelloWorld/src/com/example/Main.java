@@ -3,7 +3,8 @@ package com.example;
 public class Main {
 
     public static void main(String[] args) {
-        final float PI = 3.14F;
-        // PI = 1;  -> error
+        int x = 1;
+        x /= 2;
+        System.out.println(x); // 0
     }
 }
