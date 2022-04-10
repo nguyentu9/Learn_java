@@ -3,14 +3,19 @@ package com.example;
 public class Main {
 
     public static void main(String[] args) {
-        // Implicit casting
-        // byte > long > int > long > float > double
-        String x = "1";
-        int y = Integer.parseInt(x) + 2;
-        System.out.println(y); // 3
+        int result = Math.round(1.1F);
+        System.out.println(result); // 1
 
-        String x2 = "1.1";
-        double y2 = Double.parseDouble(x2) + 2;
-        System.out.println(y2); // 3.1
+        result = (int)Math.ceil(1.1F);
+        System.out.println(result); // 2
+
+        result = (int)Math.floor(1.1F);
+        System.out.println(result); // 1
+
+        result = Math.max(1, 2);
+        System.out.println(result); // 2
+
+        int result2 = (int)(Math.random() * 100);
+        System.out.println(result2);
     }
 }
