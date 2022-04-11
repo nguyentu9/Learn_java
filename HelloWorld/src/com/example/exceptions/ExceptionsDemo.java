@@ -16,8 +16,9 @@ import java.text.SimpleDateFormat;
 */
 public class ExceptionsDemo {
     public static void show() {
+        FileReader reader = null;
         try {
-            var reader = new FileReader("file.txt");
+            reader = new FileReader("file.txt");
             var value = reader.read();
             new SimpleDateFormat().parse("");
         }
@@ -27,6 +28,15 @@ public class ExceptionsDemo {
         }
         catch(IOException | ParseException e){
             System.out.println("Cound not read data.");
+        }
+        finally {
+            if(reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
     public static void sayHello(String name) {
