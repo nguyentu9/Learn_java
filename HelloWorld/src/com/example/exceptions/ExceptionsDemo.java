@@ -17,14 +17,11 @@ import java.text.SimpleDateFormat;
 */
 public class ExceptionsDemo {
     public static void show() {
-        try(
-            var  reader = new FileReader("file.txt");
-            var writer = new FileWriter("...");
-        ) {
-            var value = reader.read();
-        }
-        catch(IOException e){
-            System.out.println("Cound not read data.");
+        var account = new Account();
+        try {
+            account.deposit(-1);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     public static void sayHello(String name) {
