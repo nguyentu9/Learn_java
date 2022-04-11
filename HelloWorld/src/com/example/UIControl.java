@@ -3,6 +3,10 @@ package com.example;
 public class UIControl {
     private boolean isEnabled = true;
 
+    public UIControl(boolean isEnabled) {
+        System.out.println("UIControl");
+    }
+
     public void enable() {
         isEnabled = true;
     }
