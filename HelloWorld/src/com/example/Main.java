@@ -1,7 +1,6 @@
 package com.example;
 
 import com.example.generics.GenericList;
-import com.example.generics.User;
 
 public class Main {
 
@@ -9,6 +8,8 @@ public class Main {
         // int -> Integer
         // float -> Float
         // boolean -> Boolean
+
+        new GenericList<User>();
 
         GenericList<Integer> numbers = new GenericList<>();
         numbers.add(1); // Boxing
