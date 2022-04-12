@@ -9,7 +9,7 @@ public class Main {
         // float -> Float
         // boolean -> Boolean
 
-        new GenericList<User>();
+        new GenericList<>();
 
         GenericList<Integer> numbers = new GenericList<>();
         numbers.add(1); // Boxing
