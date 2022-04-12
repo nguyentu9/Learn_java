@@ -8,12 +8,9 @@ import com.example.generics.Utils;
 public class Main {
 
     public static void main(String[] args) {
-        User user = new Instructor(10);
-        Utils.printUser(new Instructor(10));
-
-        var instructors = new GenericList<Instructor>();
-        var users = new GenericList<User>();
-        Utils.printUsers(users);
+        var list = new GenericList<String>();
+        for(var item:list)
+            System.out.println(item);
 
     }
 }
