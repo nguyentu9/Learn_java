@@ -1,17 +1,18 @@
 package com.example.collections;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class CollectionsDemo {
     public static void show() {
-        List<Customer> customers = new ArrayList<>();
-        customers.add(new Customer("b", "e3"));
-        customers.add(new Customer("a", "e2"));
-        customers.add(new Customer("c", "e1"));
-        Collections.sort(customers, new EmailComparator());
+        Queue<String> queue = new ArrayDeque<>();
+        queue.add("c");
+        queue.add("a");
+        queue.add("b");
+        // b -> a -> c
 
-        System.out.println(customers);
+        var front = queue.poll();
+        System.out.println(front);
+        System.out.println(queue);
+
     }
 }
