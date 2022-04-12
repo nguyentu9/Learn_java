@@ -1,15 +1,15 @@
 package com.example;
 
 import com.example.generics.User;
+import com.example.generics.Utils;
 
 public class Main {
 
     public static void main(String[] args) {
-        var user1 = new User(10);
-        var user2 = new User(20);
-        if(user1.compareTo(user2) < 0) System.out.println("U1 < U2");
-        else if(user1.compareTo(user2) > 0) System.out.println("U1 > U2");
-        else System.out.println("U1 == U2");
+        var max = Utils.max(1, 3);
+        System.out.println(max);
 
+        var max2 = Utils.max(new User(10), new User(20));
+        System.out.println(max2);
     }
 }
