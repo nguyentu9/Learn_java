@@ -2,6 +2,7 @@ package com.example.lambdas;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class LambdasDemo {
@@ -57,6 +58,13 @@ public class LambdasDemo {
         var random = getRandom.get();
         System.out.println(random);
 
+        Function<String, Integer> map = str -> str.length();
+        var length = map.apply("Sky");
+        System.out.println(length);
+
+        Function<Integer, Integer> mapDou = item -> item * 2;
+        var value = mapDou.apply(4);
+        System.out.println(value);
     }
 
     public static void greet(Printer printer) {
