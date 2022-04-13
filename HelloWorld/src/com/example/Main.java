@@ -19,7 +19,7 @@ public class Main {
 //        SetDemo.show();
 //        MapDemo.show();
 //        LambdasDemo.show();
-//        StreamsDemo.show();
-        CreatingStreamsDemo.show();
+        StreamsDemo.show();
+//        CreatingStreamsDemo.show();
     }
 }

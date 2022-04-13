@@ -12,4 +12,16 @@ public class Movie {
     public Integer getLikes() {
         return likes;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
+    }
 }

@@ -29,5 +29,17 @@ public class StreamsDemo {
                 .forEach(n -> System.out.println(n));
 
         System.out.println("---");
+
+        movies.stream()
+                .mapToInt(Movie::getLikes)
+                .forEach(System.out::println);
+
+        System.out.println("---");
+
+        var stream = Stream.of(List.of(1,2,3), List.of(4,5,6));
+        stream
+                .flatMap(list -> list.stream())
+                .forEach(System.out::println);
+
     }
 }
