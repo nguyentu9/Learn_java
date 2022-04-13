@@ -1,6 +1,7 @@
 package com.example.lambdas;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class LambdasDemo {
 
@@ -39,10 +40,17 @@ public class LambdasDemo {
 //        greet(LambdasDemo::new);
 
         // Imperative Programming (for, if/else, switch/case)
-        List<Integer> list = List.of(1, 2, 3);
+//        List<Integer> list = List.of(1, 2, 3);
 
         // Declarative Programming
-        list.forEach(System.out::println);
+//        list.forEach(System.out::println);
+
+
+     List<String> list = List.of("a", "b", "c");
+     Consumer<String> print = item -> System.out.println(item);
+     Consumer<String> printUpperCase = item -> System.out.println(item.toUpperCase());
+
+     list.forEach(print.andThen(printUpperCase).andThen(print));
     }
 
     public static void greet(Printer printer) {
