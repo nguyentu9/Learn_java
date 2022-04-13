@@ -8,6 +8,7 @@ import com.example.generics.Instructor;
 import com.example.generics.User;
 import com.example.generics.Utils;
 import com.example.lambdas.LambdasDemo;
+import com.example.streams.StreamsDemo;
 
 
 public class Main {
@@ -16,6 +17,7 @@ public class Main {
 //        CollectionsDemo.show();
 //        SetDemo.show();
 //        MapDemo.show();
-        LambdasDemo.show();
+//        LambdasDemo.show();
+        StreamsDemo.show();
     }
 }
