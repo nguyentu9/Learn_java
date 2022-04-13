@@ -1,7 +1,8 @@
 package com.example.lambdas;
 
 public class LambdasDemo {
-    public static void show() {
+    public String prefix = "-";
+    public void show() {
         // C1:
 //        greet(new ConsolePrinter());
 
@@ -16,7 +17,7 @@ public class LambdasDemo {
         // C3
 //        greet(message -> System.out.println(message));
 
-        Printer printer = message -> System.out.println(message);
+        Printer printer = message -> System.out.println(this.prefix + message);
         greet(printer);
 
     }
