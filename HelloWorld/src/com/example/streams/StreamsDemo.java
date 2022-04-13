@@ -1,6 +1,8 @@
 package com.example.streams;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class StreamsDemo {
     public static void show() {
@@ -22,6 +24,10 @@ public class StreamsDemo {
                 .filter(movie -> movie.getLikes() > 10)
                 .count();
 
+        int[] numbers = { 1, 2, 3};
+        Arrays.stream(numbers)
+                .forEach(n -> System.out.println(n));
 
+        System.out.println("---");
     }
 }
