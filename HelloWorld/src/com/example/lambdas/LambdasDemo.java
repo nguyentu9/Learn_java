@@ -1,8 +1,16 @@
 package com.example.lambdas;
 
 public class LambdasDemo {
+
     public String prefix = "-";
-    public void show() {
+
+
+    public LambdasDemo(String message) {
+    }
+
+    public static void print(String message) {}
+
+    public static void show() {
         // C1:
 //        greet(new ConsolePrinter());
 
@@ -17,8 +25,15 @@ public class LambdasDemo {
         // C3
 //        greet(message -> System.out.println(message));
 
-        Printer printer = message -> System.out.println(this.prefix + message);
-        greet(printer);
+//        Printer printer = message -> System.out.println( message);
+//        greet(printer);
+
+        greet(System.out::println);
+        greet(message -> print(message));
+        greet(LambdasDemo::print);
+
+        greet(message -> new LambdasDemo(message));
+        greet(LambdasDemo::new);
 
     }
     public static void greet(Printer printer){

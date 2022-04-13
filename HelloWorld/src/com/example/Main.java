@@ -16,6 +16,6 @@ public class Main {
 //        CollectionsDemo.show();
 //        SetDemo.show();
 //        MapDemo.show();
-        new LambdasDemo().show();
+        LambdasDemo.show();
     }
 }
