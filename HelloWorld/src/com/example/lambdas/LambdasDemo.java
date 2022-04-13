@@ -91,10 +91,16 @@ public class LambdasDemo {
 //        System.out.println(result2);
 
         // a, b -> a + b -> square
-        BinaryOperator<Integer> add = (a, b) -> a + b;
-        Function<Integer, Integer> square = a -> a * a;
+//        BinaryOperator<Integer> add = (a, b) -> a + b;
+//        Function<Integer, Integer> square = a -> a * a;
+//
+//        Integer result = add.andThen(square).apply(1, 2);
+//        System.out.println(result);
 
-        Integer result = add.andThen(square).apply(1, 2);
+        UnaryOperator<Integer> square = n -> n * n;
+        UnaryOperator<Integer> increment = n -> n + 1;
+
+        Integer result = increment.andThen(square).apply(1);
         System.out.println(result);
 
     }
