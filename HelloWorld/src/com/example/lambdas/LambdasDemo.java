@@ -81,9 +81,17 @@ public class LambdasDemo {
 //        String result2 = addBraces.compose(replaceColon).apply("key:value");
 //        System.out.println(result2);
 
+
         Predicate<String> isLongerThan5 = str -> str.length() > 5;
         Boolean result = isLongerThan5.test("sky");
         System.out.println(result);
+
+        Predicate<String> hasLeftBrace = str -> str.startsWith("{");
+        Predicate<String> hasRightBrace = str -> str.endsWith("{");
+
+        Predicate<String> hasLeftAndRightBrace = hasLeftBrace.or(hasRightBrace);
+        Boolean result2 = hasLeftAndRightBrace.test("{key:value}");
+        System.out.println(result2);
 
     }
 
