@@ -44,11 +44,39 @@ public class StreamsDemo {
 
 
         System.out.println("---");
+        System.out.println("FILTER");
 
         Predicate<Movie> isPopular =  m -> m.getLikes() > 10;
 
         movies.stream()
                 .filter(isPopular)
                 .forEach(m -> System.out.println(m.getTitle()));
+
+        System.out.println("---");
+        System.out.println("LIMIT");
+        movies.stream()
+                .limit(2)
+                .forEach(m -> System.out.println(m.getTitle()));
+
+
+        System.out.println("---");
+        System.out.println("SKIP");
+        movies.stream()
+                .skip(2)
+                .forEach(m -> System.out.println(m.getTitle()));
+
+
+        System.out.println("---");
+        System.out.println("TAKE WHILE");
+        movies.stream()
+                .takeWhile(m -> m.getLikes() < 30)
+                .forEach(m -> System.out.println(m.getTitle()));
+
+        System.out.println("---");
+        System.out.println("DROP WHILE");
+        movies.stream()
+                .dropWhile(m -> m.getLikes() < 20)
+                .forEach(m -> System.out.println(m.getTitle()));
+
     }
 }
