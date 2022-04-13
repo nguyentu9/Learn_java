@@ -10,3 +10,7 @@
 | Set              | HashSet               |
 | Map              | HashMap               |
 
+###
+
+**Functional Interface**
+- An interface with a single abstract method

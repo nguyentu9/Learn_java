@@ -7,6 +7,7 @@ import com.example.generics.GenericList;
 import com.example.generics.Instructor;
 import com.example.generics.User;
 import com.example.generics.Utils;
+import com.example.lambdas.LambdasDemo;
 
 
 public class Main {
@@ -14,6 +15,7 @@ public class Main {
     public static void main(String[] args) {
 //        CollectionsDemo.show();
 //        SetDemo.show();
-        MapDemo.show();
+//        MapDemo.show();
+        LambdasDemo.show();
     }
 }
