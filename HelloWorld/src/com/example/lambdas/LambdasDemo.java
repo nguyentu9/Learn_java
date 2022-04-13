@@ -1,10 +1,7 @@
 package com.example.lambdas;
 
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 public class LambdasDemo {
 
@@ -82,16 +79,23 @@ public class LambdasDemo {
 //        System.out.println(result2);
 
 
-        Predicate<String> isLongerThan5 = str -> str.length() > 5;
-        Boolean result = isLongerThan5.test("sky");
+//        Predicate<String> isLongerThan5 = str -> str.length() > 5;
+//        Boolean result = isLongerThan5.test("sky");
+//        System.out.println(result);
+//
+//        Predicate<String> hasLeftBrace = str -> str.startsWith("{");
+//        Predicate<String> hasRightBrace = str -> str.endsWith("{");
+//
+//        Predicate<String> hasLeftAndRightBrace = hasLeftBrace.or(hasRightBrace);
+//        Boolean result2 = hasLeftAndRightBrace.test("{key:value}");
+//        System.out.println(result2);
+
+        // a, b -> a + b -> square
+        BinaryOperator<Integer> add = (a, b) -> a + b;
+        Function<Integer, Integer> square = a -> a * a;
+
+        Integer result = add.andThen(square).apply(1, 2);
         System.out.println(result);
-
-        Predicate<String> hasLeftBrace = str -> str.startsWith("{");
-        Predicate<String> hasRightBrace = str -> str.endsWith("{");
-
-        Predicate<String> hasLeftAndRightBrace = hasLeftBrace.or(hasRightBrace);
-        Boolean result2 = hasLeftAndRightBrace.test("{key:value}");
-        System.out.println(result2);
 
     }
 
