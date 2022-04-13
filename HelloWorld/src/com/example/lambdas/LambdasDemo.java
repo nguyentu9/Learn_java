@@ -3,6 +3,7 @@ package com.example.lambdas;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class LambdasDemo {
@@ -71,15 +72,18 @@ public class LambdasDemo {
         // "key:value"
         // first: "key=value"
         // second: "{key=value}"
-        Function<String, String> replaceColon = str -> str.replace(":", "=");
-        Function<String, String> addBraces = str -> "{" + str + "}";
+//        Function<String, String> replaceColon = str -> str.replace(":", "=");
+//        Function<String, String> addBraces = str -> "{" + str + "}";
+//
+//        String result = replaceColon.andThen(addBraces).apply("key:value");
+//        System.out.println(result);
+//
+//        String result2 = addBraces.compose(replaceColon).apply("key:value");
+//        System.out.println(result2);
 
-        String result = replaceColon.andThen(addBraces).apply("key:value");
+        Predicate<String> isLongerThan5 = str -> str.length() > 5;
+        Boolean result = isLongerThan5.test("sky");
         System.out.println(result);
-
-        String result2 = addBraces.compose(replaceColon).apply("key:value");
-        System.out.println(result2);
-
 
     }
 
