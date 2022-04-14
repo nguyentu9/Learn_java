@@ -1,6 +1,6 @@
 package com.example.streams;
 
-public class Movie {
+public class Movie implements Comparable{
     private String title;
     private Integer likes;
 
@@ -23,5 +23,10 @@ public class Movie {
 
     public void setLikes(Integer likes) {
         this.likes = likes;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

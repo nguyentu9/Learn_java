@@ -1,6 +1,7 @@
 package com.example.streams;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -78,5 +79,14 @@ public class StreamsDemo {
                 .dropWhile(m -> m.getLikes() < 20)
                 .forEach(m -> System.out.println(m.getTitle()));
 
+        System.out.println("---");
+        System.out.println("SORTING");
+        movies.stream()
+                .sorted(Comparator.comparing(Movie::getTitle))
+                .forEach(m -> System.out.println(m.getTitle()));
+
+        movies.stream()
+                .sorted(Comparator.comparing(Movie::getTitle).reversed())
+                .forEach(m -> System.out.println(m.getTitle()));
     }
 }
