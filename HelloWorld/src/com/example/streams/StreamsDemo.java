@@ -9,15 +9,16 @@ import java.util.stream.Stream;
 public class StreamsDemo {
     public static void show() {
         List<Movie> movies = List.of(
-            new Movie("a", 10),
-            new Movie("b", 15),
-            new Movie("c", 20)
+                new Movie("a", 10),
+                new Movie("a", 10),
+                new Movie("b", 15),
+                new Movie("c", 20)
         );
 
         // Imperative Programming
         int count = 0;
         for (var movie : movies) {
-            if(movie.getLikes() > 10)
+            if (movie.getLikes() > 10)
                 count++;
         }
 
@@ -26,7 +27,7 @@ public class StreamsDemo {
                 .filter(movie -> movie.getLikes() > 10)
                 .count();
 
-        int[] numbers = { 1, 2, 3};
+        int[] numbers = {1, 2, 3};
         Arrays.stream(numbers)
                 .forEach(n -> System.out.println(n));
 
@@ -38,7 +39,7 @@ public class StreamsDemo {
 
         System.out.println("---");
 
-        var stream = Stream.of(List.of(1,2,3), List.of(4,5,6));
+        var stream = Stream.of(List.of(1, 2, 3), List.of(4, 5, 6));
         stream
                 .flatMap(list -> list.stream())
                 .forEach(System.out::println);
@@ -47,7 +48,7 @@ public class StreamsDemo {
         System.out.println("---");
         System.out.println("FILTER");
 
-        Predicate<Movie> isPopular =  m -> m.getLikes() > 10;
+        Predicate<Movie> isPopular = m -> m.getLikes() > 10;
 
         movies.stream()
                 .filter(isPopular)
@@ -88,5 +89,13 @@ public class StreamsDemo {
         movies.stream()
                 .sorted(Comparator.comparing(Movie::getTitle).reversed())
                 .forEach(m -> System.out.println(m.getTitle()));
+
+        System.out.println("---");
+        System.out.println("GET UNIQUE ELEMENTS");
+        movies.stream()
+                .map(Movie::getLikes)
+                .distinct()
+                .forEach(System.out::println);
+
     }
 }
