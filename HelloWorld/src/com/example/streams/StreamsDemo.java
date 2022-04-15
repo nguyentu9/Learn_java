@@ -1,5 +1,6 @@
 package com.example.streams;
 
+import java.sql.Array;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -173,5 +174,21 @@ public class StreamsDemo {
                 .min(Comparator.comparing(Movie::getLikes))
                 .get();
         System.out.println(resultMin.getTitle());
+
+        System.out.println("---");
+        System.out.println("REDUCE");
+        Optional<Integer> sum = movies.stream().map(m -> m.getLikes()).reduce((a, b) -> a + b);
+        System.out.println("SUM1: " + sum.orElse(0));
+
+        Optional<Integer> sum1 = movies.stream().map(m -> m.getLikes()).reduce(Integer::sum);
+        System.out.println("SUM1_re: " +  sum1.orElse(0));
+
+        Integer sum2 = movies.stream().map(m -> m.getLikes()).reduce(0, (a, b) -> a + b);
+        System.out.println("SUM2: " + sum2);
+
+        Integer sum3 = movies.stream().map(m -> m.getLikes()).reduce(0, Integer::sum);
+        System.out.println("SUM2_re: " + sum3);
+
+
     }
 }
