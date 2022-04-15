@@ -97,5 +97,13 @@ public class StreamsDemo {
                 .distinct()
                 .forEach(System.out::println);
 
+        System.out.println("---");
+        System.out.println("PEEK ELEMENT");
+        movies.stream()
+                .filter(m -> m.getLikes() > 10)
+                .peek(m -> System.out.println("filtered " + m.getTitle()))
+                .map(Movie::getTitle)
+                .peek(t -> System.out.println("mapped: " + t))
+                .forEach(System.out::println);
     }
 }
