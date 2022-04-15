@@ -3,6 +3,7 @@ package com.example.streams;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -26,6 +27,27 @@ public class StreamsDemo {
         var count2 = movies.stream()
                 .filter(movie -> movie.getLikes() > 10)
                 .count();
+
+        /*
+            INTERMEDIATE
+        - map() / flatMap()
+        - filter()
+        - limit() / skip()
+        - sorted()
+        - distinct()
+        - peek()
+
+            REDUCERS
+        - count()
+        - anyMatch(predicate)
+        - allMatch(predicate)
+        - noneMatch(predicate)
+        - findFirst()
+        - findAny()
+        - max(comparator)
+        - min(comparator)
+
+         */
 
         int[] numbers = {1, 2, 3};
         Arrays.stream(numbers)
@@ -105,5 +127,51 @@ public class StreamsDemo {
                 .map(Movie::getTitle)
                 .peek(t -> System.out.println("mapped: " + t))
                 .forEach(System.out::println);
+
+        System.out.println("---");
+        System.out.println("anyMatch");
+        var resultAnyMatch = movies.stream()
+                .anyMatch(m -> m.getLikes() > 20);
+        System.out.println(resultAnyMatch); // false
+
+        System.out.println("---");
+        System.out.println("allMatch");
+        var resultAllMatch = movies.stream()
+                .allMatch(m -> m.getLikes() > 20);
+        System.out.println(resultAllMatch); // false
+
+        System.out.println("---");
+        System.out.println("noneMatch");
+        var resultNoneMatch = movies.stream()
+                .noneMatch(m -> m.getLikes() > 20);
+        System.out.println(resultNoneMatch); // true
+
+        System.out.println("---");
+        System.out.println("findFirst");
+        var resultFindFirst = movies.stream()
+                .findFirst().get();
+        System.out.println(resultFindFirst.getTitle());
+
+
+        System.out.println("---");
+        System.out.println("findAny");
+        var resultFindAny = movies.stream()
+                .findAny().get();
+        System.out.println(resultFindAny.getTitle());
+
+        System.out.println("---");
+        System.out.println("max");
+        var resultMax = movies.stream()
+                .max(Comparator.comparing(Movie::getLikes))
+                .get();
+        System.out.println(resultMax.getTitle());
+
+
+        System.out.println("---");
+        System.out.println("min");
+        var resultMin = movies.stream()
+                .min(Comparator.comparing(Movie::getLikes))
+                .get();
+        System.out.println(resultMin.getTitle());
     }
 }
