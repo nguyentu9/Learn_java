@@ -245,5 +245,18 @@ public class StreamsDemo {
                 .collect(Collectors.groupingBy(Movie::getGenre,
                         Collectors.mapping(Movie::getTitle, Collectors.joining(", "))));
         System.out.println(resultGrouping4);
+
+        System.out.println("---");
+        System.out.println("PARTITIONNING");
+
+        var resultPartitionning = movies.stream()
+                .collect(Collectors.partitioningBy(m -> m.getLikes() > 20));
+        System.out.println(resultPartitionning);
+
+
+        Map<Boolean, String> resultPartitionning1 = movies.stream()
+                .collect(Collectors.partitioningBy(m -> m.getLikes() > 20, Collectors.mapping(Movie::getTitle, Collectors.joining(", "))));
+        System.out.println(resultPartitionning1);
+
     }
 }
