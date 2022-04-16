@@ -6,11 +6,13 @@ public class ThreadDemo {
         thread.start();
 
         try {
-            thread.join();
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        System.out.println("File is ready to be scanned.");
+        thread.interrupt();
+
+
     }
 }
