@@ -1,6 +1,5 @@
 package com.example.streams;
 
-import java.sql.Array;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -10,10 +9,10 @@ import java.util.stream.Stream;
 public class StreamsDemo {
     public static void show() {
         List<Movie> movies = List.of(
-                new Movie("a", 10),
-                new Movie("a", 10),
-                new Movie("b", 15),
-                new Movie("c", 20)
+                new Movie("a", 10, Genre.THRILLER),
+                new Movie("a", 10, Genre.THRILLER),
+                new Movie("b", 15, Genre.ACTION),
+                new Movie("c", 20, Genre.ACTION)
         );
 
         // Imperative Programming
@@ -230,5 +229,21 @@ public class StreamsDemo {
                 .collect(Collectors.joining(", "));
         System.out.println(resultJoining);
 
+        System.out.println("GROUPING");
+        Map<Genre, List<Movie>> resultGrouping = movies.stream().collect(Collectors.groupingBy(Movie::getGenre));
+        System.out.println(resultGrouping);
+
+        Map<Genre, Set<Movie>> resultGrouping2 = movies.stream()
+                .collect(Collectors.groupingBy(Movie::getGenre, Collectors.toSet()));
+        System.out.println(resultGrouping2);
+
+        Map<Genre, Long> resultGrouping3 = movies.stream()
+                .collect(Collectors.groupingBy(Movie::getGenre, Collectors.counting()));
+        System.out.println(resultGrouping3);
+
+        var resultGrouping4 = movies.stream()
+                .collect(Collectors.groupingBy(Movie::getGenre,
+                        Collectors.mapping(Movie::getTitle, Collectors.joining(", "))));
+        System.out.println(resultGrouping4);
     }
 }

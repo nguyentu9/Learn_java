@@ -3,10 +3,12 @@ package com.example.streams;
 public class Movie implements Comparable{
     private String title;
     private Integer likes;
+    private Genre genre;
 
-    public Movie(String title, Integer likes) {
+    public Movie(String title, Integer likes, Genre genre) {
         this.title = title;
         this.likes = likes;
+        this.genre = genre;
     }
 
     public Integer getLikes() {
@@ -37,4 +39,9 @@ public class Movie implements Comparable{
                 ", likes=" + likes +
                 '}';
     }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
 }
