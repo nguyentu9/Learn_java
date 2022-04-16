@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamsDemo {
@@ -258,5 +259,12 @@ public class StreamsDemo {
                 .collect(Collectors.partitioningBy(m -> m.getLikes() > 20, Collectors.mapping(Movie::getTitle, Collectors.joining(", "))));
         System.out.println(resultPartitionning1);
 
+
+        System.out.println("---");
+        System.out.println("PRIMITIVE TYPE STREAMS");
+
+        IntStream.range(1, 5).forEach(System.out::println); // 1 -> 4
+        System.out.println("---");
+        IntStream.rangeClosed(1, 5).forEach(System.out::println); // 1 -> 5
     }
 }
