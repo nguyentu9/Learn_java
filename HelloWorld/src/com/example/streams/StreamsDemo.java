@@ -1,11 +1,10 @@
 package com.example.streams;
 
 import java.sql.Array;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamsDemo {
@@ -189,6 +188,47 @@ public class StreamsDemo {
         Integer sum3 = movies.stream().map(m -> m.getLikes()).reduce(0, Integer::sum);
         System.out.println("SUM2_re: " + sum3);
 
+        System.out.println("---");
+        System.out.println("COLLECTORS");
+
+        List<Movie> resultList = movies.stream()
+                .filter(m -> m.getLikes() > 10)
+                .collect(Collectors.toList());
+        System.out.println("LIST");
+        System.out.println(resultList);
+
+        Set<Movie> resultSet = movies.stream()
+                .filter(m -> m.getLikes() > 10)
+                .collect(Collectors.toSet());
+        System.out.println("SET");
+        System.out.println(resultSet);
+
+        var resultMap = movies.stream()
+                .filter(m -> m.getLikes() > 10)
+//                .collect(Collectors.toMap(m -> m.getTitle(), Function.identity()));
+                .collect(Collectors.toMap(Movie::getTitle, Function.identity()));
+        System.out.println("MAP");
+        System.out.println(resultMap);
+
+        System.out.println("SUMMING INT");
+        Double resultSummingInt = movies.stream()
+                .filter(m -> m.getLikes() > 10)
+                .collect(Collectors.summingDouble(Movie::getLikes));
+        System.out.println(resultSummingInt);
+
+
+        System.out.println("SUMMARIZING INT");
+        IntSummaryStatistics resultSummarizingInt = movies.stream()
+                .filter(m -> m.getLikes() > 10)
+                .collect(Collectors.summarizingInt(Movie::getLikes));
+        System.out.println(resultSummarizingInt);
+
+        System.out.println("JOINING");
+        String resultJoining = movies.stream()
+                .filter(m -> m.getLikes() > 10)
+                .map(Movie::getTitle)
+                .collect(Collectors.joining(", "));
+        System.out.println(resultJoining);
 
     }
 }

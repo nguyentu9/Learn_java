@@ -29,4 +29,12 @@ public class Movie implements Comparable{
     public int compareTo(Object o) {
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "title='" + title + '\'' +
+                ", likes=" + likes +
+                '}';
+    }
 }
