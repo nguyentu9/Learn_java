@@ -2,7 +2,11 @@ package com.example.concurrency;
 
 public class ThreadDemo {
     public static void show() {
-        System.out.println(Thread.activeCount()); // 2
-        System.out.println(Runtime.getRuntime().availableProcessors()); // 4
+        System.out.println(Thread.currentThread().getName());
+
+        for(var i = 0; i < 10; i++) {
+            Thread thread = new Thread(new DownloadFileTask());
+            thread.start();
+        }
     }
 }
