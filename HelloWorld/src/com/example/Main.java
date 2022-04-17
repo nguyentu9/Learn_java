@@ -30,7 +30,7 @@ public class Main {
 //        CreatingStreamsDemo.show();
 //        ThreadDemo.show();
 //        ExecutorsDemo.show();
-//        CompletableFuturesDemo.show();
+        CompletableFuturesDemo.show();
 //        ImplementAsyncAPI.show();
 
 
