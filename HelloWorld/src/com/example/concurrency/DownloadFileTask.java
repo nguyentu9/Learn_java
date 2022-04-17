@@ -2,11 +2,10 @@ package com.example.concurrency;
 
 public class DownloadFileTask implements Runnable{
 
-
     private DownloadStatus status;
 
-    public DownloadFileTask(DownloadStatus status) {
-        this.status = status;
+    public DownloadFileTask() {
+        status = new DownloadStatus();
     }
 
     @Override
@@ -19,5 +18,9 @@ public class DownloadFileTask implements Runnable{
         }
 
         System.out.println("Downloading complete: " + Thread.currentThread().getName());
+    }
+
+    public DownloadStatus getStatus() {
+        return status;
     }
 }

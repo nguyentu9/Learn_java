@@ -16,10 +16,16 @@ public class ThreadDemo {
 //
 //        thread.interrupt();
 
+
+        List<DownloadFileTask> tasks = new ArrayList<>();
         List<Thread> threads = new ArrayList<>();
+
         var status = new DownloadStatus();
         for (int i = 0; i < 10; i++) {
-            Thread thread = new Thread(new DownloadFileTask(status));
+            DownloadFileTask task = new DownloadFileTask();
+            tasks.add(task);
+
+            Thread thread = new Thread(task);
             thread.start();
             threads.add(thread);
         }
@@ -32,7 +38,12 @@ public class ThreadDemo {
             }
         }
 
-        System.out.println(status.getTotalBytes());
+
+        var totalBytes = tasks.stream()
+                .map(t -> t.getStatus().getTotalBytes())
+                .reduce(Integer::sum);
+
+        System.out.println(totalBytes);
 
 
     }
