@@ -1,6 +1,7 @@
 package com.example.concurrency;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ThreadDemo {
     public static void show() {
@@ -80,28 +81,34 @@ public class ThreadDemo {
 //        System.out.println(status.getTotalBytes());
 
         // 210 Synchronized Collections
+        // Collection<Integer> collection = new ArrayList<>(); // doesn't thread-safe
+//        Collection<Integer> collection = Collections.synchronizedCollection(new ArrayList<>()); // thread-safe
+//
+//        var thread1 = new Thread(() -> {
+//            collection.addAll(Arrays.asList(1, 2, 3));
+//        });
+//
+//        var thread2 = new Thread(() -> {
+//            collection.addAll(Arrays.asList(4, 5, 6));
+//        });
+//
+//        thread1.start();
+//        thread2.start();
+//
+//        try {
+//            thread1.join();
+//            thread2.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println(collection);
 
-        // Collection<Integer> collection = new ArrayList<>();
-        Collection<Integer> collection = Collections.synchronizedCollection(new ArrayList<>());
+        // 211 Concurrent Collections
+        Map<Integer, String> map = new ConcurrentHashMap<>();
+        map.put(1, "a");
+        map.get(1);
+        map.remove(1);
 
-        var thread1 = new Thread(() -> {
-            collection.addAll(Arrays.asList(1, 2, 3));
-        });
-
-        var thread2 = new Thread(() -> {
-            collection.addAll(Arrays.asList(4, 5, 6));
-        });
-
-        thread1.start();
-        thread2.start();
-
-        try {
-            thread1.join();
-            thread2.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(collection);
     }
 }
