@@ -117,21 +117,39 @@ public class CompletableFuturesDemo {
 //                .thenAccept(playlist -> System.out.println(playlist));
 
         // 225 Combining Completable Futures
-        var first = CompletableFuture.supplyAsync(() -> "20USD")
-                .thenApply(str -> {
-                    var price = str.replace("USD", "");
-                    return Integer.parseInt(price);
-                });
-        var second = CompletableFuture.supplyAsync(() -> 0.9);
+//        var first = CompletableFuture.supplyAsync(() -> "20USD")
+//                .thenApply(str -> {
+//                    var price = str.replace("USD", "");
+//                    return Integer.parseInt(price);
+//                });
+//        var second = CompletableFuture.supplyAsync(() -> 0.9);
+//
+//        first.thenCombine(second, (price, exchangeRate) -> price * exchangeRate)
+//                .thenAccept(System.out::println);
+//
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
-        first.thenCombine(second, (price, exchangeRate) -> price * exchangeRate)
-                .thenAccept(System.out::println);
+        // 226 Waiting for Many Tasks to Complete
+        var first = CompletableFuture.supplyAsync(() -> 1);
+        var second = CompletableFuture.supplyAsync(() -> 2);
+        var third = CompletableFuture.supplyAsync(() -> 3);
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        var all =CompletableFuture.allOf(first, second, third);
+        all.thenRun(() -> {
+            try {
+                var firstResult = first.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            System.out.println("All tasks completed successfully");
+        });
+
 
     }
 
