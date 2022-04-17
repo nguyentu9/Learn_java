@@ -12,10 +12,12 @@ public class DownloadFileTask implements Runnable{
     public void run() {
         System.out.println("Downloading a file: " + Thread.currentThread().getName());
 
-        for(var i = 0; i < 10_000; i++){
+        for(var i = 0; i < 1_000_000; i++){
             if(Thread.currentThread().isInterrupted()) break;
             status.incrementTotalBytes();
         }
+
+        status.done();
 
         System.out.println("Downloading complete: " + Thread.currentThread().getName());
     }

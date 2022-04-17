@@ -16,26 +16,38 @@ public class ThreadDemo {
 //
 //        thread.interrupt();
 
+        // ##############
 
-        List<Thread> threads = new ArrayList<>();
+//        List<Thread> threads = new ArrayList<>();
+//
+//        var status = new DownloadStatus();
+//        for (int i = 0; i < 10; i++) {
+//            Thread thread = new Thread(new DownloadFileTask(status));
+//            thread.start();
+//            threads.add(thread);
+//        }
+//
+//        for(Thread thread : threads) {
+//            try {
+//                thread.join();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//
+//        System.out.println(status.getTotalBytes());
 
+        // ###############
         var status = new DownloadStatus();
-        for (int i = 0; i < 10; i++) {
-            Thread thread = new Thread(new DownloadFileTask(status));
-            thread.start();
-            threads.add(thread);
-        }
+        var thread1 = new Thread(new DownloadFileTask(status));
+        var thread2 = new Thread(() -> {
+            while(!status.isDone()) {}
+            System.out.println(status.getTotalBytes());
+        });
 
-        for(Thread thread : threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-        System.out.println(status.getTotalBytes());
+        thread1.start();
+        thread2.start();
 
     }
 }
