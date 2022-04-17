@@ -2,6 +2,7 @@ package com.example.executors;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class CompletableFuturesDemo {
@@ -152,16 +153,33 @@ public class CompletableFuturesDemo {
 //        });
 
         // 227 Waiting for the First Task
-        var first = CompletableFuture.supplyAsync(() -> {
-           LongTask.simulate();
-           return 20;
+//        var first = CompletableFuture.supplyAsync(() -> {
+//           LongTask.simulate();
+//           return 20;
+//        });
+//
+//        var second = CompletableFuture.supplyAsync(() -> 15);
+//
+//        CompletableFuture
+//                .anyOf(first, second)
+//                .thenAccept(temp -> System.out.println(temp)); // 15
+
+        // 228 Handling timeouts
+        var future = CompletableFuture.supplyAsync(() -> {
+            LongTask.simulate();
+            return 20;
         });
 
-        var second = CompletableFuture.supplyAsync(() -> 15);
+        try {
+            // alternate: orTimeout
+            var result = future.completeOnTimeout(1, 1, TimeUnit.SECONDS).get();
+            System.out.println(result);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
-        CompletableFuture
-                .anyOf(first, second)
-                .thenAccept(temp -> System.out.println(temp)); // 15
 
     }
 
