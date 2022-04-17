@@ -4,6 +4,7 @@ import com.example.collections.CollectionsDemo;
 import com.example.collections.MapDemo;
 import com.example.collections.SetDemo;
 import com.example.concurrency.ThreadDemo;
+import com.example.executors.ExecutorsDemo;
 import com.example.generics.GenericList;
 import com.example.generics.Instructor;
 import com.example.generics.User;
@@ -22,6 +23,7 @@ public class Main {
 //        LambdasDemo.show();
 //        StreamsDemo.show();
 //        CreatingStreamsDemo.show();
-        ThreadDemo.show();
+//        ThreadDemo.show();
+        ExecutorsDemo.show();
     }
 }

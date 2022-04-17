@@ -111,13 +111,5 @@ public class ThreadDemo {
 //        map.get(1);
 //        map.remove(1);
 
-        var executor = Executors.newFixedThreadPool(2);
-        try {
-            executor.submit(() -> {
-                System.out.println(Thread.currentThread().getName());
-            });
-        } finally {
-            executor.shutdown();
-        }
     }
 }
