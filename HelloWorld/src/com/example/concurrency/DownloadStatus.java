@@ -1,9 +1,9 @@
 package com.example.concurrency;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.LongAdder;
 
 public class DownloadStatus {
-    private AtomicInteger totalBytes = new AtomicInteger();
+    private LongAdder totalBytes = new LongAdder();
     private int totalFiles;
 
 
@@ -13,7 +13,11 @@ public class DownloadStatus {
     private Object totalFilesLock = new Object();
 
     public void incrementTotalBytes() {
-        totalBytes.incrementAndGet();
+        totalBytes.increment();
+    }
+
+    public int getTotalBytes() {
+        return totalBytes.intValue(); // sum()
     }
 
     /*
@@ -28,9 +32,6 @@ public class DownloadStatus {
         totalFiles++;
     }
 
-    public int getTotalBytes() {
-        return totalBytes.get();
-    }
 
     public int getTotalFiles() {
         return totalFiles;
