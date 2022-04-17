@@ -56,20 +56,36 @@ public class CompletableFuturesDemo {
         // 1
 
         // 3.3
-        var future = CompletableFuture.supplyAsync(() -> 1);
-        future.thenAcceptAsync(result -> {
-            System.out.println(Thread.currentThread().getName());
-            System.out.println(result);
-        });
-
+//        var future = CompletableFuture.supplyAsync(() -> 1);
+//        future.thenAcceptAsync(result -> {
+//            System.out.println(Thread.currentThread().getName());
+//            System.out.println(result);
+//        });
         // KQ
 //        ForkJoinPool.commonPool-worker-3
 //        1
 
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        // 222 Handling Exceptions
+        var future = CompletableFuture.supplyAsync(() -> {
+            System.out.println("Getting the current weather");
+            throw new IllegalStateException();
+        });
+
         try {
-            Thread.sleep(3000);
+            var temperature = future.exceptionally(ex -> 1).get();
+            System.out.println(temperature);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
+
+
     }
 }
