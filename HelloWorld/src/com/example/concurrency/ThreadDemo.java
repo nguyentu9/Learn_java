@@ -2,6 +2,7 @@ package com.example.concurrency;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
 
 public class ThreadDemo {
     public static void show() {
@@ -105,10 +106,18 @@ public class ThreadDemo {
 //        System.out.println(collection);
 
         // 211 Concurrent Collections
-        Map<Integer, String> map = new ConcurrentHashMap<>();
-        map.put(1, "a");
-        map.get(1);
-        map.remove(1);
+//        Map<Integer, String> map = new ConcurrentHashMap<>();
+//        map.put(1, "a");
+//        map.get(1);
+//        map.remove(1);
 
+        var executor = Executors.newFixedThreadPool(2);
+        try {
+            executor.submit(() -> {
+                System.out.println(Thread.currentThread().getName());
+            });
+        } finally {
+            executor.shutdown();
+        }
     }
 }
