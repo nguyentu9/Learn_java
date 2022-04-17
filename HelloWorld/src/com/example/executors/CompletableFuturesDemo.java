@@ -5,6 +5,11 @@ import java.util.concurrent.ExecutionException;
 import java.util.function.Supplier;
 
 public class CompletableFuturesDemo {
+
+    public static int toFahrenheit(int celsius) {
+        return (int) (celsius * 1.8) + 32;
+    }
+
     public static void show() {
         // 1
 //        Runnable task = () -> System.out.println("a");
@@ -72,20 +77,29 @@ public class CompletableFuturesDemo {
 //        }
 
         // 222 Handling Exceptions
-        var future = CompletableFuture.supplyAsync(() -> {
-            System.out.println("Getting the current weather");
-            throw new IllegalStateException();
-        });
+//        var future = CompletableFuture.supplyAsync(() -> {
+//            System.out.println("Getting the current weather");
+//            throw new IllegalStateException();
+//        });
+//
+//        try {
+//            var temperature = future.exceptionally(ex -> 1).get();
+//            System.out.println(temperature);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        }
 
-        try {
-            var temperature = future.exceptionally(ex -> 1).get();
-            System.out.println(temperature);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+
+        // 223 Transforming a Completable Future
+        var future = CompletableFuture.supplyAsync(() -> 20);
+        future
+            .thenApply(CompletableFuturesDemo::toFahrenheit)
+            .thenAccept(System.out::println);
 
 
     }
+
+
 }
