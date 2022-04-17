@@ -5,7 +5,7 @@ public class DownloadStatus {
     private int totalFiles;
 
 
-    private boolean isDone;
+    private volatile boolean isDone;
 
     private Object totalBytesLock = new Object();
     private Object totalFilesLock = new Object();
@@ -37,11 +37,11 @@ public class DownloadStatus {
     }
 
 
-    public synchronized boolean isDone() {
+    public boolean isDone() {
         return isDone;
     }
 
-    public synchronized void done() {
+    public void done() {
         isDone = true;
     }
 }
