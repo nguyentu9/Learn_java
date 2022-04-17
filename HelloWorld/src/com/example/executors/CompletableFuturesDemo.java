@@ -6,6 +6,14 @@ import java.util.function.Supplier;
 
 public class CompletableFuturesDemo {
 
+    public static CompletableFuture<String> getUserEmailAsync() {
+        return CompletableFuture.supplyAsync(() -> "email");
+    }
+
+    public static CompletableFuture<String> getPlaylistAsync(String email){
+        return CompletableFuture.supplyAsync(() -> "playlist");
+    }
+
     public static int toFahrenheit(int celsius) {
         return (int) (celsius * 1.8) + 32;
     }
@@ -93,11 +101,20 @@ public class CompletableFuturesDemo {
 
 
         // 223 Transforming a Completable Future
-        var future = CompletableFuture.supplyAsync(() -> 20);
-        future
-            .thenApply(CompletableFuturesDemo::toFahrenheit)
-            .thenAccept(System.out::println);
+//        var future = CompletableFuture.supplyAsync(() -> 20);
+//        future
+//            .thenApply(CompletableFuturesDemo::toFahrenheit)
+//            .thenAccept(System.out::println);
 
+
+        // 224 Composing Completable Futures
+//        var future = CompletableFuture.supplyAsync(() -> "email");
+//        future.thenCompose(email -> CompletableFuture.supplyAsync(() -> "playlist"))
+//                .thenAccept(playlist -> System.out.println(playlist));
+
+        getUserEmailAsync()
+                .thenCompose(CompletableFuturesDemo::getPlaylistAsync)
+                .thenAccept(playlist -> System.out.println(playlist));
 
     }
 
