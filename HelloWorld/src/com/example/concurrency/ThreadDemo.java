@@ -1,7 +1,6 @@
 package com.example.concurrency;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ThreadDemo {
     public static void show() {
@@ -60,24 +59,49 @@ public class ThreadDemo {
 
         // ##############
 
-        List<Thread> threads = new ArrayList<>();
+//        List<Thread> threads = new ArrayList<>();
+//
+//        var status = new DownloadStatus();
+//        for (int i = 0; i < 10; i++) {
+//            Thread thread = new Thread(new DownloadFileTask(status));
+//            thread.start();
+//            threads.add(thread);
+//        }
+//
+//        for(Thread thread : threads) {
+//            try {
+//                thread.join();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//
+//        System.out.println(status.getTotalBytes());
 
-        var status = new DownloadStatus();
-        for (int i = 0; i < 10; i++) {
-            Thread thread = new Thread(new DownloadFileTask(status));
-            thread.start();
-            threads.add(thread);
+        // 210 Synchronized Collections
+
+        // Collection<Integer> collection = new ArrayList<>();
+        Collection<Integer> collection = Collections.synchronizedCollection(new ArrayList<>());
+
+        var thread1 = new Thread(() -> {
+            collection.addAll(Arrays.asList(1, 2, 3));
+        });
+
+        var thread2 = new Thread(() -> {
+            collection.addAll(Arrays.asList(4, 5, 6));
+        });
+
+        thread1.start();
+        thread2.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
-        for(Thread thread : threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-        System.out.println(status.getTotalBytes());
+        System.out.println(collection);
     }
 }
