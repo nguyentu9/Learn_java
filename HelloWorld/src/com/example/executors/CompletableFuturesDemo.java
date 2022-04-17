@@ -10,7 +10,7 @@ public class CompletableFuturesDemo {
         return CompletableFuture.supplyAsync(() -> "email");
     }
 
-    public static CompletableFuture<String> getPlaylistAsync(String email){
+    public static CompletableFuture<String> getPlaylistAsync(String email) {
         return CompletableFuture.supplyAsync(() -> "playlist");
     }
 
@@ -112,9 +112,26 @@ public class CompletableFuturesDemo {
 //        future.thenCompose(email -> CompletableFuture.supplyAsync(() -> "playlist"))
 //                .thenAccept(playlist -> System.out.println(playlist));
 
-        getUserEmailAsync()
-                .thenCompose(CompletableFuturesDemo::getPlaylistAsync)
-                .thenAccept(playlist -> System.out.println(playlist));
+//        getUserEmailAsync()
+//                .thenCompose(CompletableFuturesDemo::getPlaylistAsync)
+//                .thenAccept(playlist -> System.out.println(playlist));
+
+        // 225 Combining Completable Futures
+        var first = CompletableFuture.supplyAsync(() -> "20USD")
+                .thenApply(str -> {
+                    var price = str.replace("USD", "");
+                    return Integer.parseInt(price);
+                });
+        var second = CompletableFuture.supplyAsync(() -> 0.9);
+
+        first.thenCombine(second, (price, exchangeRate) -> price * exchangeRate)
+                .thenAccept(System.out::println);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
