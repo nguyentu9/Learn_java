@@ -134,22 +134,34 @@ public class CompletableFuturesDemo {
 //        }
 
         // 226 Waiting for Many Tasks to Complete
-        var first = CompletableFuture.supplyAsync(() -> 1);
-        var second = CompletableFuture.supplyAsync(() -> 2);
-        var third = CompletableFuture.supplyAsync(() -> 3);
+//        var first = CompletableFuture.supplyAsync(() -> 1);
+//        var second = CompletableFuture.supplyAsync(() -> 2);
+//        var third = CompletableFuture.supplyAsync(() -> 3);
+//
+//        var all =CompletableFuture.allOf(first, second, third);
+//        all.thenRun(() -> {
+//            try {
+//                var firstResult = first.get();
+//                System.out.println(firstResult);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } catch (ExecutionException e) {
+//                e.printStackTrace();
+//            }
+//            System.out.println("All tasks completed successfully");
+//        });
 
-        var all =CompletableFuture.allOf(first, second, third);
-        all.thenRun(() -> {
-            try {
-                var firstResult = first.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-            System.out.println("All tasks completed successfully");
+        // 227 Waiting for the First Task
+        var first = CompletableFuture.supplyAsync(() -> {
+           LongTask.simulate();
+           return 20;
         });
 
+        var second = CompletableFuture.supplyAsync(() -> 15);
+
+        CompletableFuture
+                .anyOf(first, second)
+                .thenAccept(temp -> System.out.println(temp)); // 15
 
     }
 
