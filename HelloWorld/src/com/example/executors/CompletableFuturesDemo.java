@@ -165,21 +165,32 @@ public class CompletableFuturesDemo {
 //                .thenAccept(temp -> System.out.println(temp)); // 15
 
         // 228 Handling timeouts
-        var future = CompletableFuture.supplyAsync(() -> {
-            LongTask.simulate();
-            return 20;
-        });
+//        var future = CompletableFuture.supplyAsync(() -> {
+//            LongTask.simulate();
+//            return 20;
+//        });
+//
+//        try {
+//            // alternate: orTimeout
+//            var result = future.completeOnTimeout(1, 1, TimeUnit.SECONDS).get();
+//            System.out.println(result);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        }
+
+        // 230 Solution Getting a Quote
+        var service = new FlightService();
+        service.getQuote("site1")
+                .thenAccept(System.out::println);
+
 
         try {
-            // alternate: orTimeout
-            var result = future.completeOnTimeout(1, 1, TimeUnit.SECONDS).get();
-            System.out.println(result);
+            Thread.sleep(10_000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
         }
-
 
     }
 
