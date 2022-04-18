@@ -1,11 +1,14 @@
 package com.example.executors;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class CompletableFuturesDemo {
+
 
     public static CompletableFuture<String> getUserEmailAsync() {
         return CompletableFuture.supplyAsync(() -> "email");
@@ -181,16 +184,23 @@ public class CompletableFuturesDemo {
 //        }
 
         // 230 Solution Getting a Quote
+//        var service = new FlightService();
+//        service.getQuote("site1")
+//                .thenAccept(System.out::println);
+//
+//
+//        try {
+//            Thread.sleep(10_000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+
+        // 231 Solution Getting Many Quotes
         var service = new FlightService();
-        service.getQuote("site1")
-                .thenAccept(System.out::println);
-
-
-        try {
-            Thread.sleep(10_000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        service.getQuotes()
+                .map(future -> future.thenAccept(System.out::println))
+                .collect(Collectors.toList());
 
     }
 
