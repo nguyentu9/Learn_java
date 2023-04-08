@@ -27,14 +27,12 @@ public class _3_ReadDataFromFormulaCell {
                     case STRING:
                         System.out.print(cell.getStringCellValue());
                         break;
+                    case FORMULA:
                     case NUMERIC:
                         System.out.print(cell.getNumericCellValue());
                         break;
                     case BOOLEAN:
                         System.out.print(cell.getBooleanCellValue());
-                        break;
-                    case FORMULA:
-                        System.out.print(cell.getNumericCellValue());
                         break;
                 }
                 System.out.print("|");
